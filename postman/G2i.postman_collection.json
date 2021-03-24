@@ -1,0 +1,230 @@
+{
+	"info": {
+		"_postman_id": "7cc055a0-37fb-4e96-b6ae-1c76adf89bc6",
+		"name": "G2i",
+		"description": "Postman to test g2i sample node project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Acronym",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/acronym/AAF",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"acronym",
+						"AAF"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Search Acronym",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/acronym?from=0&limit=9&search=AC",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"acronym"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "0"
+						},
+						{
+							"key": "limit",
+							"value": "9"
+						},
+						{
+							"key": "search",
+							"value": "AC"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Acronym (success with pho credentials)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "fakeTestToken",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"meaning\": \"the great\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/acronym/BEN",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"acronym",
+						"BEN"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Acronym (fail no credentials)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"meaning\": \"the great\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/acronym/BEN",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"acronym",
+						"BEN"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Acronym",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"acronym\": \"BEN\",\n    \"meaning\": \"The app creator\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/acronym",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"acronym"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Acronym (success with pho credentials)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "fakeTestToken",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/acronym/BEN",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"acronym",
+						"BEN"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Acronym (fail no credentials)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/acronym/BEN",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"acronym",
+						"BEN"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Acronym COUNT",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/random/BEN",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"random",
+						"BEN"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

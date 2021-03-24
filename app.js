@@ -1,27 +1,5 @@
 'use strict';
 
-// Description of the application to build as per https://gist.github.com/TejasQ/686e08eeab91f78ea2d946d7766a508c
-
-// GET /acronym?from=50&limit=10&search=:search
-// ▶ returns a list of acronyms, paginated using query parameters
-// ▶ response headers indicate if there are more results
-// ▶ returns all acronyms that fuzzy match against :search
-// GET /acronym/:acronym
-// ▶ returns the acronym and definition matching :acronym
-// GET /random/:count?
-// ▶ returns :count random acronyms
-// ▶ the acronyms returned should not be adjacent rows from the data
-// POST /acronym
-// ▶ receives an acronym and definition strings
-// ▶ adds the acronym definition to the db
-// PUT /acronym/:acronym
-// ▶ receives an acronym and definition strings
-// ▶ uses an authorization header to ensure acronyms are protected
-// ▶ updates the acronym definition to the db for :acronym
-// DELETE /acronym/:acronym
-// ▶ deletes :acronym
-// ▶ uses an authorization header to ensure acronyms are protected
-
 const compression = require("compression");
 const express = require("express");
 const bodyParser = require('body-parser')
@@ -41,6 +19,7 @@ app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(compression());
 
+// Public route
 app.get('/acronym/:acronym', function (req, res) {
     console.log("Get ...")
     acronymService.findByAcronym(db, req.params.acronym)
@@ -53,9 +32,10 @@ app.get('/acronym/:acronym', function (req, res) {
       })
       .catch((error) => {
           console.log("Error", error);
-      })
+      });
 })
 
+// Public route
 app.get('/acronym', function (req, res) {
     console.log("Search ...");
     acronymService.search(db, req.query.from, req.query.limit, req.query.search)
@@ -71,9 +51,10 @@ app.get('/acronym', function (req, res) {
         })
         .catch((error) => {
             console.log("Error", error);
-        })
+        });
 })
 
+// Public route
 app.get('/random/:count', function (req, res) {
     acronymService.countAcronym(db, req.params.count)
         .then(data => {
@@ -85,37 +66,48 @@ app.get('/random/:count', function (req, res) {
         })
         .catch((error) => {
             console.log("Error", error);
-        })
+        });
 })
 
+// Public route
 app.post('/acronym', function (req, res) {
     console.log("Posting ... Data: " + req.body);
     acronymService.addAcronym(db, req.body.acronym, req.body.meaning)
         .then(data => res.sendStatus(201))
         .catch((error) => {
             console.log("Error", error);
-        })
+        });
 })
 
+// Protected route
 app.put('/acronym/:acronym', function (req, res) {
-    console.log("Putting ... Data: " + req.body);
-    acronymService.updateAcronym(db, req.params.acronym, req.body.meaning)
-        .then(data => res.sendStatus(200))
-        .catch((error) => {
-            console.log("Error", error);
-        })
+    if (!req.headers.authorization) {
+        return res.status(403).json({ error: 'No credentials sent!' });
+    } else {
+        console.log("Putting ... Data: " + req.body);
+        acronymService.updateAcronym(db, req.params.acronym, req.body.meaning)
+            .then(data => res.sendStatus(200))
+            .catch((error) => {
+                console.log("Error", error);
+            });
+    }
 })
 
+// Protected route
 app.delete('/acronym/:acronym', function (req, res) {
-    acronymService.removeAcronym(db, req.params.acronym, true)
-        .then(data => res.sendStatus(200))
-        .catch((error) => {
-            console.log("Error", error);
-        })
+    if (!req.headers.authorization) {
+        return res.status(403).json({ error: 'No credentials sent!' });
+    } else {
+        acronymService.removeAcronym(db, req.params.acronym, true)
+            .then(data => res.sendStatus(200))
+            .catch((error) => {
+                console.log("Error", error);
+            });
+    }
 })
 
 app.listen(3000, function () {
-	console.log("Started application on port %d", 3000)
+	console.log("Started application on port %d", 3000);
 });
 
 module.exports = { app }
