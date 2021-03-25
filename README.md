@@ -1,5 +1,6 @@
 # g2i-node-sample
 The node sample project for g2i interview
+https://gist.github.com/severnsc/c0624fb92816c694b3b44a52c3ef59c4
 
 GET /acronym?from=50&limit=10&search=:search
 ▶ returns a list of acronyms, paginated using query parameters
@@ -57,3 +58,24 @@ https://blog.logrocket.com/the-perfect-architecture-flow-for-your-next-node-js-p
 https://medium.com/swlh/step-by-step-building-your-first-node-js-project-45489f15aaa1
 https://www.freecodecamp.org/news/building-a-simple-node-js-api-in-under-30-minutes-a07ea9e390d2/
 
+```
+Hey Ben, 
+
+Thanks so much for your interest in G2i! Based on your application we think that you are a great match for what we're looking for. We would love to invite you to complete our vetting process and join the G2i platform. 
+
+Here are the next steps with a timeline for each: 
+
+- (ASAP) Schedule a call with a member of the Developer Success Team here: https://calendly.com/g2i-developer-success. 
+This call is our way of getting to know you and what you're looking for so we can ensure that your experience with G2i is the best it can possibly be. 
+
+- (ASAP) Review the instructions for our code challenge here: https://gist.github.com/severnsc/c0624fb92816c694b3b44a52c3ef59c4 
+Feel free to get started on this immediately. You can complete either the React/React Native or Node.js challenge. You do not have to do both. 
+
+- (In 7 days) Upload your completed code challenge at https://code-uploader.g2i.co/code-upload/upload 
+
+After you complete all of the steps and assuming all goes well we will onboard you into G2i and get you set up to find your next job! If you have any questions please let me know by responding to this email. We have dozens of jobs we are looking to fill right now so time is of the essence! 
+
+Thanks, 
+Kevin Gordon
+{#HS:1458899149-9824#}   
+```
